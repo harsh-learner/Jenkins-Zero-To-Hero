@@ -21,3 +21,4 @@ spec:
         - containerPort: 8080
 
 image: learnerharsh/ultimate-cicd:1
+image: learnerharsh/ultimate-cicd:6
