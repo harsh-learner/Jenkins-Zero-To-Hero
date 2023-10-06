@@ -12,7 +12,7 @@ pipeline {
         SONAR_URL = "http://13.233.4.226:9000/"
         GIT_REPO_NAME = "Jenkins-Zero-To-Hero"
         GIT_USER_NAME = "harsh-learner"
-        REPLACE_IMAGE_TAG = 'replaceImageTag'  // Declare the variable here
+        PLACEHOLDER = '##IMAGE_TAG##'
     }
     stages {
         stage('Checkout') {
@@ -54,7 +54,12 @@ pipeline {
                         git config user.email "harsh.xyz@gmail.com"
                         git config user.name "Harsh-Learner"
                         BUILD_NUMBER=${BUILD_NUMBER}
-                        sed -i "s/${REPLACE_IMAGE_TAG}/${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
+                        if ! grep -q "${PLACEHOLDER}" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml; then
+                            echo "Adding ${PLACEHOLDER} placeholder to deployment.yml"
+                            echo "image: learnerharsh/ultimate-cicd:${PLACEHOLDER}" >> java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
+                        fi
+
+                        sed -i "s/${PLACEHOLDER}/${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
                         git add -A  # Add all changes, including untracked files
                         git status  # Print status to debug
                         git commit -m "Commit all changes before updating deployment image to version ${BUILD_NUMBER}"
