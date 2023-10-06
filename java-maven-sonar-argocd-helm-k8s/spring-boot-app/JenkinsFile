@@ -18,7 +18,7 @@ pipeline {
             steps {
                 sh 'echo "Checkout stage passed"'
                 // Uncomment and use the following lines to checkout from Git
-                // git branch: 'main', url: 'https://github.com/iam-veeramalla/Jenkins-Zero-To-Hero.git'
+                // git branch: 'main', url: 'https://github.com/harsh-learner/Jenkins-Zero-To-Hero.git'
             }
         }
         stage('Build and Test') {
@@ -52,9 +52,6 @@ pipeline {
                     sh '''
                         git config user.email "harsh.xyz@gmail.com"
                         git config user.name "Harsh-Learner"
-                        sh 'rm -rf Jenkins-Zero-To-Hero/* || true'
-                        git clone https://github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git Jenkins-Zero-To-Hero
-                        cd ${GIT_REPO_NAME}
                         BUILD_NUMBER=${BUILD_NUMBER}
                         sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
                         git add java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
