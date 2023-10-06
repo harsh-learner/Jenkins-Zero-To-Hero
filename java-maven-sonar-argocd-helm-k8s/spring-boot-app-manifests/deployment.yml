@@ -22,3 +22,4 @@ spec:
 
 image: learnerharsh/ultimate-cicd:1
 image: learnerharsh/ultimate-cicd:6
+image: learnerharsh/ultimate-cicd:7
