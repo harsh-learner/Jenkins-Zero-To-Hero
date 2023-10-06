@@ -52,7 +52,8 @@ pipeline {
                     sh '''
                         git config user.email "harsh.xyz@gmail.com"
                         git config user.name "Harsh-Learner"
-                        git clone https://github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git
+                        sh 'rm -rf Jenkins-Zero-To-Hero/*'
+                        git clone https://github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git Jenkins-Zero-To-Hero
                         cd ${GIT_REPO_NAME}
                         BUILD_NUMBER=${BUILD_NUMBER}
                         sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
