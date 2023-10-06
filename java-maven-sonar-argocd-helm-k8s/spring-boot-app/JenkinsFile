@@ -53,6 +53,7 @@ pipeline {
                         git config user.email "harsh.xyz@gmail.com"
                         git config user.name "Harsh-Learner"
                         BUILD_NUMBER=${BUILD_NUMBER}
+                        sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
                         git add -A  # Add all changes, including untracked files
                         git status  # Print status to debug
                         git commit -m "Commit all changes before updating deployment image to version ${BUILD_NUMBER}"
