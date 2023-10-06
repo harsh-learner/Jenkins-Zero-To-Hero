@@ -11,7 +11,7 @@ pipeline {
         DOCKER_IMAGE = "${DOCKER_HUB_USERNAME}/ultimate-cicd:${BUILD_NUMBER}"
         SONAR_URL = "http://13.234.119.236:9000/"
         GIT_REPO_NAME = "Jenkins-Zero-To-Hero"
-        GIT_USER_NAME = "iam-veeramalla"
+        GIT_USER_NAME = "harsh-learner"
     }
     stages {
         stage('Checkout') {
@@ -50,8 +50,8 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                     sh '''
-                        git config user.email "abhishek.xyz@gmail.com"
-                        git config user.name "Abhishek Veeramalla"
+                        git config user.email "harsh.xyz@gmail.com"
+                        git config user.name "Harsh-Learner"
                         git clone https://github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git
                         cd ${GIT_REPO_NAME}
                         BUILD_NUMBER=${BUILD_NUMBER}
