@@ -16,10 +16,6 @@ spec:
     spec:
       containers:
       - name: spring-boot-app
-        image: learnerharsh/ultimate-cicd # Updated image tag
+        image: learnerharsh/ultimate-cicd:${PLACEHOLDER}             # Updated image tag
         ports:
         - containerPort: 8080
-
-image: learnerharsh/ultimate-cicd:1
-image: learnerharsh/ultimate-cicd:6
-image: learnerharsh/ultimate-cicd:7
