@@ -58,6 +58,8 @@ pipeline {
                         git config user.email "harsh.xyz@gmail.com"
                         git config user.name "Harsh-Learner"
                         BUILD_NUMBER=${BUILD_NUMBER}
+                        GIT_REPO_NAME="Jenkins-Zero-To-Hero"
+                        GIT_USER_NAME="harsh-learner"
                         
                         # Replace the image tag directly in the deployment.yml
                         sed -i "s|image: learnerharsh/ultimate-cicd:${PLACEHOLDER}|image: learnerharsh/${DOCKER_IMAGE}|" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
