@@ -62,7 +62,7 @@ pipeline {
                         GIT_USER_NAME="harsh-learner"
                         
                         # Replace the image tag directly in the deployment.yml
-                        sed -i "s|image: learnerharsh/ultimate-cicd:${BUILD_NUMBER}|image: learnerharsh/${DOCKER_IMAGE}|" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
+                        sed -i "s|image: learnerharsh/${DOCKER_IMAGE}|image: learnerharsh/ultimate-cicd:${BUILD_NUMBER}|" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
 
                         # Check if the image tag is updated in the deployment.yml
                         if grep -q "learnerharsh/${DOCKER_IMAGE}" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml; then
