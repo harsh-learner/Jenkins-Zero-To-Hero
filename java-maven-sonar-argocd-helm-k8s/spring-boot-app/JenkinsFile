@@ -62,16 +62,7 @@ pipeline {
                         GIT_USER_NAME="harsh-learner"
                         
                         # Replace the image tag directly in the deployment.yml
-                        sed -i "s/${replaceImageTag}/${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
-
-                     # Check if the image tag is updated in the deployment.yml
-                        if grep -q "learnerharsh/ultimate-cicd:${BUILD_NUMBER}" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml; then
-                            echo "Image tag updated successfully."
-                        else
-                            echo "Failed to update image tag in the deployment manifest."
-                            exit 1  # Exit the pipeline with an error status
-                        fi
-
+                        sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
                         git add java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
                         git commit -m "Update deployment image to version ${BUILD_NUMBER}"
                         git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
